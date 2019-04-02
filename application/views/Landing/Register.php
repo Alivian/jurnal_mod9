@@ -1,14 +1,18 @@
-
         <!-- Sign up form -->
         <section class="signup">
             <div class="container">
                 <div class="signup-content">
                     <div class="signup-form">
                         <h2 class="form-title">Sign up</h2>
+                        <?php 
+                            if(isset($_SESSION['FailReg'])) {
+                                $this->load->view('Alerts/FailReg');
+                            }
+                        ?>
                         <form action="<?php echo site_url('UserController/Register'); ?>" method="POST" class="register-form" id="register-form">
                             <div class="form-group">
                                 <label for="name"><i class="zmdi zmdi-account material-icons-name"></i></label>
-                                <input type="text" name="name" id="name" placeholder="Your Name" required/>
+                                <input type="text" name="name" id="name" placeholder="Username" required/>
                             </div>
                             <div class="form-group">
                                 <label for="email"><i class="zmdi zmdi-email"></i></label>

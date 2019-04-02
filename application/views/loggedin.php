@@ -1,0 +1,1 @@
+<a href="<?php echo site_url('UserController/Logout'); ?>">Logout</a>

@@ -5,24 +5,39 @@ class User extends CI_Model {
     public function Register() {
         date_default_timezone_set('Asia/Jakarta');
         $data = array(
-            "Nama" => $this->input->post('name'),
+            "Username" => $this->input->post('name'),
             "Email" => $this->input->post('email'),
-            "Password" => md5($this->input->post('pass')),
-            "RegisDate" => Date("d-m-Y, H:i:s")
+            "Pass" => md5($this->input->post('pass')),
+            "RegisTime" => Date("d-m-Y, H:i:s")
         );
 
-        $this->db->insert('register', $data);
-        $this->db->insert('login',
-        array(
-            "Nama" => $data['Nama'],
-            "Password" => $data['Password']
-        ));
+        if($this->isExist($data['Username'])) {
+            return false;
+        } else {
+            $this->db->insert('register', $data);
+            $this->db->insert('login',
+            array(
+                "Username" => $data['Username'],
+                "Pass" => $data['Pass']
+            ));
+            return true;
+        }
+    }
+
+    public function isExist($username) {
+        $this->db->where("Username",$username);
+        $result = $this->db->get('login')->result_array();
+        if(isset($result[0])) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public function findUser() {
         $data = array(
-            "Nama" => $this->input->post('your_name'),
-            "Password" => md5($this->input->post('your_pass'))
+            "Username" => $this->input->post('your_name'),
+            "Pass" => md5($this->input->post('your_pass'))
         );
 
         $this->db->where($data);

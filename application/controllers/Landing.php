@@ -5,10 +5,15 @@ class Landing extends CI_Controller {
 
 	public function index()
 	{
-        $data['title'] = "Login";
-        $this->load->view('Landing/Header', $data);
-        $this->load->view('Landing/Login');
-        $this->load->view('Landing/Footer');
+        $cookie = $this->input->cookie('logged');
+        if(isset($cookie) || isset($_SESSION['successLogin'])){
+            $this->loginPage();
+        } else {
+            $data['title'] = "Login";
+            $this->load->view('Landing/Header', $data);
+            $this->load->view('Landing/Login', $data);
+            $this->load->view('Landing/Footer');
+        }
     }
     
     public function Register() {
@@ -16,5 +21,16 @@ class Landing extends CI_Controller {
         $this->load->view('Landing/Header', $data);
         $this->load->view('Landing/Register');
         $this->load->view('Landing/Footer');
+    }
+
+    public function loginPage() {
+        $cookie = $this->input->cookie('logged');
+        if(isset($cookie)) {
+            echo "Logged in with cookie = ".$cookie;
+            $this->load->view('loggedin');
+        } else {
+            echo "Logged in with session = ".$_SESSION['successLogin'];
+            $this->load->view('loggedin');
+        }
     }
 }

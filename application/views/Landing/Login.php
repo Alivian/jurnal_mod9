@@ -6,13 +6,17 @@
                         <figure><img src="<?php echo base_url('Assets/Landing/images/signin-image.jpg'); ?>" alt="sing up image"></figure>
                         <a href="<?php echo site_url('Landing/Register'); ?>" class="signup-image-link">Create an account</a>
                     </div>
-
                     <div class="signin-form">
                         <h2 class="form-title">Sign In</h2>
+                        <?php
+                            if(isset($_SESSION['SuccessReg'])) {
+                                $this->load->view('Alerts/SuccessRegis');
+                            }
+                        ?>
                         <form action="<?php echo site_url('UserController/Signin'); ?>" method="POST" class="register-form" id="login-form">
                             <div class="form-group">
                                 <label for="your_name"><i class="zmdi zmdi-account material-icons-name"></i></label>
-                                <input type="text" name="your_name" id="your_name" placeholder="Your Name" required/>
+                                <input type="text" name="your_name" id="your_name" placeholder="Username" required/>
                             </div>
                             <div class="form-group">
                                 <label for="your_pass"><i class="zmdi zmdi-lock"></i></label>
