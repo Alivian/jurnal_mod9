@@ -23,10 +23,10 @@ class UserController extends CI_Controller {
         $user = $this->User->findUser();
         if($user != null){
             if($this->input->post('remember-me') != null) {
-                set_cookie('logged', 'yolo', '3600');
+                set_cookie('logged', $user[0]['Username'], '3600');
                 redirect('Landing');
             } else {
-                $this->session->set_userdata('successLogin',$user[0]['Username']);
+                $this->session->set_userdata('successLogin', $user[0]['Username']);
                 redirect('Landing');
             }
         } else {

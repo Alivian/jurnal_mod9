@@ -44,4 +44,12 @@ class User extends CI_Model {
         $result = $this->db->get('login');
         return $result->result_array();
     }
+
+    public function imageUpload($imgName) {
+        $this->db->insert('image_path', array('ImgName' => $imgName));
+    }
+
+    public function getImage() {
+        return $this->db->get('image_path')->result_array();
+    }
 }
