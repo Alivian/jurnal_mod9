@@ -11,6 +11,8 @@
                         <?php
                             if(isset($_SESSION['SuccessReg'])) {
                                 $this->load->view('Alerts/SuccessRegis');
+                            } else if(isset($_SESSION['falselogin'])) {
+                                $this->load->view('Alerts/FailLogin');
                             }
                         ?>
                         <form action="<?php echo site_url('UserController/Signin'); ?>" method="POST" class="register-form" id="login-form">
