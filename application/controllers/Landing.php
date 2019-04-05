@@ -26,10 +26,6 @@ class Landing extends CI_Controller {
     public function loginPage() {
         $cookie = $this->input->cookie('logged');
         $data['image'] = $this->User->getImage();
-        if(isset($cookie)) {
-            $this->load->view('loggedin', $data);
-        } else {
-            $this->load->view('loggedin', $data);
-        }
+        $this->load->view('loggedin', $data);
     }
 }
