@@ -36,13 +36,11 @@ class UserController extends CI_Controller {
     }
 
     public function Logout() {
-        $cookie = $this->input->cookie('logged');
-        if(isset($cookie)) {
-            delete_cookie('logged');
-            redirect('Landing');
-        } else {
-            session_destroy();
-            redirect('Landing');
+       
+        /* Complete this function using $cookie.
+            Condition 1  : if isset($cookie) then delete_cookie('logged')
+            Condition 2  : else then session_destroy() 
+                After u set all condition, redirect to Landing controller.
+            */
         }
-    }
 }

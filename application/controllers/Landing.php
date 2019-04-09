@@ -10,22 +10,28 @@ class Landing extends CI_Controller {
             $this->loginPage();
         } else {
             $data['title'] = "Login";
-            $this->load->view('Landing/Header', $data);
-            $this->load->view('Landing/Login', $data);
-            $this->load->view('Landing/Footer');
+           
+            /*Load view header,Login and Footer from Landing folder.
+                Header and Login have a parameter $data.
+             */
         }
     }
     
     public function Register() {
         $data['title'] = "Register";
-        $this->load->view('Landing/Header', $data);
-        $this->load->view('Landing/Register');
-        $this->load->view('Landing/Footer');
+       
+
+            /*Load view header,Login and Footer from Landing folder.
+                Header have a parameter $data.
+             */
     }
 
     public function loginPage() {
-        $cookie = $this->input->cookie('logged');
-        $data['image'] = $this->User->getImage();
-        $this->load->view('loggedin', $data);
+        
+        /*
+        1. CREATE COOKIE NAME LOGGED
+        2. $data['image'] = ('replace this text to function getImage() in Model/User.php')
+        3.LOAD VIEW LOGGEDIN AND USE PARAMETER $DATA */
+
     }
 }
